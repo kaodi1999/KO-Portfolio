@@ -5,7 +5,7 @@ Hello😄! Thank you for stopping by. This portfolio contains SQL Projects from 
 
 ## <img src="https://github.com/kaodi1999/SQL-Portfolio-KO/assets/88451981/81af0d7b-cad7-4ad8-8db5-ba625c72d907" height="40" width="40"> Table of Conents
 - [Beginner SQL Code](#Beginner_SQL_Code)
-- [Netflix Project](https://github.com/kaodi1999/SQL-Portfolio-KO/blob/da6107ecc1d4e844398e3280adc7f3ec305ab3ce/Netflix%20Project)
+- [Netflix Project](#Netflix_Project)
 
 
 # Beginner SQL Code #
@@ -13,3 +13,4 @@ Hello😄! Thank you for stopping by. This portfolio contains SQL Projects from 
 
 # Netflix Project #
 Here is a project using netflix data.
+- [Netflix Project](https://github.com/kaodi1999/SQL-Portfolio-KO/blob/da6107ecc1d4e844398e3280adc7f3ec305ab3ce/Netflix%20Project)
