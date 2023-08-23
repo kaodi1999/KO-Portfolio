@@ -4,7 +4,7 @@ SQL Portfolio done entirely by Kaodi Okafor
 Hello😄! Thank you for stopping by. This portfolio contains SQL Projects from before and during my Master's Program, where I earned my degree in Data Science and Analytics. I have also included some solo projects from my time after graduation that I completed for fun! I am capable of working through complicated SQL codes, as well as machine learning, and other data analytics languages. Feel free to take a look around and reach out if you have any feedback or questions. Email:(kaodiokafor@gmail.com)
 
 ## <img src="https://github.com/kaodi1999/SQL-Portfolio-KO/assets/88451981/81af0d7b-cad7-4ad8-8db5-ba625c72d907" height="40" width="40"> Table of Conents
-- Here you can find [Beginner SQL Code](#Beginner_SQL_Code)
+- [Beginner SQL Code](#Beginner_SQL_Code)
 - [Netflix Project](https://github.com/kaodi1999/SQL-Portfolio-KO/blob/da6107ecc1d4e844398e3280adc7f3ec305ab3ce/Netflix%20Project)
 
 
