@@ -1,8 +1,8 @@
 /* KAODI OKAFOR */
 
-use LargeCo;
+use LargeCo Data;
 
-## /* QUESTION 1 - Write a query to display the SKU(stock keeping unit), description, type, base, category, and price for all 
+/* QUESTION 1 - Write a query to display the SKU(stock keeping unit), description, type, base, category, and price for all 
 products that have a PROD_BASE of Water and a PROD_CATEGORY of Sealer. And, use aliases to each attribute. For instance, 
 PROD_DESCRIPT -> ‘product description’. */ 
 
@@ -11,7 +11,7 @@ FROM LGPRODUCT
 WHERE PROD_BASE = 'Water' AND PROD_CATEGORY = 'Sealer';
 
 
-/* Question 2. Write a query to display the employee number, last name, first name, salary “from” date, salary end date, and 
+/* QUESTION 2. Write a query to display the employee number, last name, first name, salary “from” date, salary end date, and 
 salary amount for employees 83731, 83745, and 84039. Sort the output by employee number and salary “from” date. */
 
 SELECT E.EMP_NUM,E.EMP_LNAME,E.EMP_FNAME,S.SAL_FROM,S.SAL_END,S.SAL_AMOUNT
@@ -20,7 +20,7 @@ WHERE E.EMP_NUM = 83731 OR E.EMP_NUM = 83745 OR E.EMP_NUM = 84039
 ORDER BY E.EMP_NUM,S.SAL_FROM;
 
 
-/* Question 3. Write a query to display the first name, last name, street, city, state, and zip code of any customer who 
+/* QUESTION 3. Write a query to display the first name, last name, street, city, state, and zip code of any customer who 
 purchased a Foresters Best brand top coat between July 15, 2017, and July 31, 2017. If a customer purchased more than one 
 such product, display the customer’s information only once in the output. Sort the output by state, last name, and then 
 first name. */
@@ -36,7 +36,7 @@ GROUP BY C.CUST_FNAME,C.CUST_LNAME,C.CUST_STREET,C.CUST_CITY,C.CUST_STATE,C.CUST
 ORDER BY C.CUST_STATE,C.CUST_LNAME,C.CUST_FNAME;
 
 
-/* Question 4. Write a query to display the employee number, last name, email address, title, and department name of each 
+/* QUESTION 4. Write a query to display the employee number, last name, email address, title, and department name of each 
 employee whose job title ends in the word “ASSOCIATE”. Sort the output by department name and employee title. */
 
 SELECT E.EMP_NUM,E.EMP_LNAME,E.EMP_EMAIL,E.EMP_TITLE,D.DEPT_NAME
@@ -45,7 +45,7 @@ WHERE E.EMP_TITLE LIKE '%ASSOCIATE'
 ORDER BY D.DEPT_NAME, E.EMP_TITLE;
 
 
-/* Question 5. Write a query to display the number of products within each base and type combination, sorted by base and then 
+/* QUESTION 5. Write a query to display the number of products within each base and type combination, sorted by base and then 
 by type. */
 
 SELECT PROD_BASE,PROD_TYPE,COUNT(PROD_SKU) AS NUMPRODUCTS
@@ -53,7 +53,7 @@ FROM LGPRODUCT
 GROUP BY PROD_BASE,PROD_TYPE;
 
 
-/* Question 6. Write a query to display the brand ID, brand name, and average price of products of each brand. Sort the output 
+/* QUESTION 6. Write a query to display the brand ID, brand name, and average price of products of each brand. Sort the output 
 by brand name. Results are shown with the average price rounded to two decimal places. */
 
 SELECT B.BRAND_ID,B.BRAND_NAME,ROUND(AVG(P.PROD_PRICE),2)
@@ -62,7 +62,7 @@ GROUP BY B.BRAND_NAME,B.BRAND_ID
 ORDER BY B.BRAND_NAME;
 
 
-/* Question 7. Write a query to display the department number, department name, department phone number, employee number, and 
+/* QUESTION 7. Write a query to display the department number, department name, department phone number, employee number, and 
 last name of each department manager. Sort the output by department name. */
 
 SELECT D.DEPT_NUM,D.DEPT_NAME,D.DEPT_PHONE,E.EMP_NUM,E.EMP_LNAME
@@ -71,7 +71,7 @@ WHERE EMP_TITLE LIKE '%MANAGER'
 ORDER BY D.DEPT_NAME;
 
 
-/* Question 8. Write a query to display the brand ID, brand name, brand type, and average price (round to 2 decimal places) 
+/* QUESTION 8. Write a query to display the brand ID, brand name, brand type, and average price (round to 2 decimal places) 
 of products for the brand that has the largest average product price. Results are shown with the average price rounded to 
 two decimal places. */
 
@@ -83,7 +83,7 @@ ORDER BY AVGPRICE DESC
 LIMIT 1;
 
 
-/* Question 9. Write a query to display the manager name, department name, department phone number, employee, customer name, 
+/* QUESTION 9. Write a query to display the manager name, department name, department phone number, employee, customer name, 
 invoice date, and invoice total for the department manager of the employee who made a sale to a customer whose last name 
 is Hagan on May 18, 2017. */
 
@@ -96,7 +96,7 @@ INNER JOIN LGCUSTOMER C ON C.CUST_CODE = I.CUST_CODE
 WHERE C.CUST_LNAME = 'Hagan' AND I.INV_DATE = "2017-05-18";
 
 
-/* Question 10. The Binder Prime Company wants to recognize the employee who sold the most of its products during a 
+/* QUESTION 10. The Binder Prime Company wants to recognize the employee who sold the most of its products during a 
 specified period. Write a query to display the employee number, employee first name, employee last name, email address, 
 and total units sold for the employee who sold the most Binder Prime brand products between November 1, 2017, 
 and December 5, 2017. If there is a tie for most units, sort the output by employee last name. */
@@ -111,7 +111,7 @@ GROUP BY E.EMP_NUM
 ORDER BY TOTAL_UNITS_SOLD DESC, EMP_LNAME LIMIT 2;
 
 
-/* Question 11. LargeCo is planning a new promotion in Alabama (AL) and wants to know about the largest purchases made 
+/* QUESTION 11. LargeCo is planning a new promotion in Alabama (AL) and wants to know about the largest purchases made 
 by customers in that state. Write a query to display the customer code, customer first name, last name, full address, 
 invoice date, and invoice total of the largest purchase made by each customer in AL. Be certain to include any customers 
 in AL who have never made a purchase; their invoice date should be NULL and the invoice totals should display as 0. 
@@ -130,7 +130,7 @@ GROUP BY C.CUST_CODE
 ORDER BY CUST_LNAME, CUST_FNAME;
 
 
-/* Question 12. The purchasing manager is still concerned about the impact of price on sales. Write a query to display 
+/* QUESTION 12. The purchasing manager is still concerned about the impact of price on sales. Write a query to display 
 the brand name, brand type, product SKU, product description, and price of any products that are not a premium brand, 
 but that cost more than the most expensive premium brand products. */
 
