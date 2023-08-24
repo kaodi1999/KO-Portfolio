@@ -5,13 +5,13 @@ Hello😄! Thank you for stopping by. This portfolio contains SQL Projects from 
 
 ## <img src="https://github.com/kaodi1999/SQL-Portfolio-KO/assets/88451981/81af0d7b-cad7-4ad8-8db5-ba625c72d907" height="40" width="40"> Table of Conents
 - [Beginner SQL Code](#Beginner-SQL-Code)
-- [Netflix Project](#Netflix-Project)
+- [Advanced SQL Code](#Advanced-SQL-Code)
 
 
 # Beginner SQL Code #
 - NFL Fantasy Football Project
   - In [this](https://github.com/kaodi1999/SQL-Portfolio-KO/blob/6986f8c20ead8644e0afd61976cb9145ae75d6e0/NFL%20Analysis) project, I used an NFL Fantasy Football dataset I found on Kaggle to find different answers to random questions. This was used as a practice study, so it may seem a bit basic; however, there is more to come!
 
-# Netflix Project #
+# Advanced SQL Code #
 Here is a project using netflix data.
 - [Netflix Project](https://github.com/kaodi1999/SQL-Portfolio-KO/blob/da6107ecc1d4e844398e3280adc7f3ec305ab3ce/Netflix%20Project)
