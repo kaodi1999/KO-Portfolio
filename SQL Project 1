@@ -1,0 +1,142 @@
+/* KAODI OKAFOR */
+
+use LargeCo;
+
+## /* QUESTION 1 - Write a query to display the SKU(stock keeping unit), description, type, base, category, and price for all 
+products that have a PROD_BASE of Water and a PROD_CATEGORY of Sealer. And, use aliases to each attribute. For instance, 
+PROD_DESCRIPT -> ‘product description’. */ 
+
+SELECT PROD_SKU AS ProductSku, PROD_DESCRIPT AS ProductDescription, PROD_TYPE AS ProductType, PROD_BASE AS ProductBase, PROD_CATEGORY AS ProductCategory, PROD_PRICE AS ProductPrice
+FROM LGPRODUCT
+WHERE PROD_BASE = 'Water' AND PROD_CATEGORY = 'Sealer';
+
+
+/* Question 2. Write a query to display the employee number, last name, first name, salary “from” date, salary end date, and 
+salary amount for employees 83731, 83745, and 84039. Sort the output by employee number and salary “from” date. */
+
+SELECT E.EMP_NUM,E.EMP_LNAME,E.EMP_FNAME,S.SAL_FROM,S.SAL_END,S.SAL_AMOUNT
+FROM LGEMPLOYEE E INNER JOIN LGSALARY_HISTORY S ON E.EMP_NUM = S.EMP_NUM
+WHERE E.EMP_NUM = 83731 OR E.EMP_NUM = 83745 OR E.EMP_NUM = 84039
+ORDER BY E.EMP_NUM,S.SAL_FROM;
+
+
+/* Question 3. Write a query to display the first name, last name, street, city, state, and zip code of any customer who 
+purchased a Foresters Best brand top coat between July 15, 2017, and July 31, 2017. If a customer purchased more than one 
+such product, display the customer’s information only once in the output. Sort the output by state, last name, and then 
+first name. */
+
+SELECT C.CUST_FNAME,C.CUST_LNAME,C.CUST_STREET,C.CUST_CITY,C.CUST_STATE,C.CUST_ZIP
+FROM LGCUSTOMER C 
+INNER JOIN LGINVOICE I ON C.CUST_CODE = I.CUST_CODE 
+INNER JOIN LGLINE L ON I.INV_NUM = L.INV_NUM 
+INNER JOIN LGPRODUCT P ON L.PROD_SKU = P.PROD_SKU 
+INNER JOIN LGBRAND B ON P.BRAND_ID = B.BRAND_ID
+WHERE I.INV_DATE BETWEEN '2017-07-15' AND '2017-07-31'
+GROUP BY C.CUST_FNAME,C.CUST_LNAME,C.CUST_STREET,C.CUST_CITY,C.CUST_STATE,C.CUST_ZIP
+ORDER BY C.CUST_STATE,C.CUST_LNAME,C.CUST_FNAME;
+
+
+/* Question 4. Write a query to display the employee number, last name, email address, title, and department name of each 
+employee whose job title ends in the word “ASSOCIATE”. Sort the output by department name and employee title. */
+
+SELECT E.EMP_NUM,E.EMP_LNAME,E.EMP_EMAIL,E.EMP_TITLE,D.DEPT_NAME
+FROM LGEMPLOYEE E INNER JOIN LGDEPARTMENT D ON E.DEPT_NUM = D.DEPT_NUM
+WHERE E.EMP_TITLE LIKE '%ASSOCIATE'
+ORDER BY D.DEPT_NAME, E.EMP_TITLE;
+
+
+/* Question 5. Write a query to display the number of products within each base and type combination, sorted by base and then 
+by type. */
+
+SELECT PROD_BASE,PROD_TYPE,COUNT(PROD_SKU) AS NUMPRODUCTS
+FROM LGPRODUCT
+GROUP BY PROD_BASE,PROD_TYPE;
+
+
+/* Question 6. Write a query to display the brand ID, brand name, and average price of products of each brand. Sort the output 
+by brand name. Results are shown with the average price rounded to two decimal places. */
+
+SELECT B.BRAND_ID,B.BRAND_NAME,ROUND(AVG(P.PROD_PRICE),2)
+FROM LGBRAND B INNER JOIN LGPRODUCT P ON B.BRAND_ID = P.BRAND_ID
+GROUP BY B.BRAND_NAME,B.BRAND_ID
+ORDER BY B.BRAND_NAME;
+
+
+/* Question 7. Write a query to display the department number, department name, department phone number, employee number, and 
+last name of each department manager. Sort the output by department name. */
+
+SELECT D.DEPT_NUM,D.DEPT_NAME,D.DEPT_PHONE,E.EMP_NUM,E.EMP_LNAME
+FROM LGDEPARTMENT D INNER JOIN LGEMPLOYEE E ON D.DEPT_NUM = E.DEPT_NUM
+WHERE EMP_TITLE LIKE '%MANAGER'
+ORDER BY D.DEPT_NAME;
+
+
+/* Question 8. Write a query to display the brand ID, brand name, brand type, and average price (round to 2 decimal places) 
+of products for the brand that has the largest average product price. Results are shown with the average price rounded to 
+two decimal places. */
+
+SELECT B.BRAND_ID,B.BRAND_NAME,B.BRAND_TYPE,ROUND(AVG(P.PROD_PRICE),2) AS AVGPRICE
+FROM LGBRAND B INNER JOIN LGPRODUCT P ON B.BRAND_ID = P.BRAND_ID
+GROUP BY B.BRAND_ID
+HAVING MAX(AVGPRICE)
+ORDER BY AVGPRICE DESC
+LIMIT 1;
+
+
+/* Question 9. Write a query to display the manager name, department name, department phone number, employee, customer name, 
+invoice date, and invoice total for the department manager of the employee who made a sale to a customer whose last name 
+is Hagan on May 18, 2017. */
+
+SELECT E1.EMP_FNAME as EMP_FNAME, E1.EMP_LNAME as EMP_LNAME, D.DEPT_NAME, D.DEPT_PHONE, E2.EMP_FNAME as EMP_FNAME, 
+E2.EMP_LNAME as EMP_LNAME, C.CUST_FNAME, C.CUST_LNAME, I.INV_DATE, I.INV_TOTAL
+FROM LGEMPLOYEE E1 INNER JOIN LGDEPARTMENT D ON E1.EMP_NUM = D.EMP_NUM
+INNER JOIN LGEMPLOYEE E2 ON D.DEPT_NUM = E2.DEPT_NUM
+INNER JOIN LGINVOICE I ON I.EMPLOYEE_ID = E2.EMP_NUM 
+INNER JOIN LGCUSTOMER C ON C.CUST_CODE = I.CUST_CODE
+WHERE C.CUST_LNAME = 'Hagan' AND I.INV_DATE = "2017-05-18";
+
+
+/* Question 10. The Binder Prime Company wants to recognize the employee who sold the most of its products during a 
+specified period. Write a query to display the employee number, employee first name, employee last name, email address, 
+and total units sold for the employee who sold the most Binder Prime brand products between November 1, 2017, 
+and December 5, 2017. If there is a tie for most units, sort the output by employee last name. */
+
+SELECT E.EMP_NUM, E.EMP_FNAME, E.EMP_LNAME, E.EMP_EMAIL, SUM(L.LINE_QTY) AS TOTAL_UNITS_SOLD
+FROM LGEMPLOYEE E INNER JOIN LGINVOICE I ON E.EMP_NUM = I.EMPLOYEE_ID
+INNER JOIN LGLINE L ON L.INV_NUM = I.INV_NUM
+INNER JOIN LGPRODUCT P ON P.PROD_SKU = L.PROD_SKU
+INNER JOIN LGBRAND B ON B.BRAND_ID = P.BRAND_ID
+WHERE B.BRAND_NAME = 'BINDER PRIME' AND I.INV_DATE BETWEEN '2017-11-01' AND '2017-12-05'
+GROUP BY E.EMP_NUM
+ORDER BY TOTAL_UNITS_SOLD DESC, EMP_LNAME LIMIT 2;
+
+
+/* Question 11. LargeCo is planning a new promotion in Alabama (AL) and wants to know about the largest purchases made 
+by customers in that state. Write a query to display the customer code, customer first name, last name, full address, 
+invoice date, and invoice total of the largest purchase made by each customer in AL. Be certain to include any customers 
+in AL who have never made a purchase; their invoice date should be NULL and the invoice totals should display as 0. 
+Sort the results by customer last name, and then first name.*/
+
+SELECT C.CUST_CODE,C.CUST_FNAME,C.CUST_LNAME,C.CUST_STREET,C.CUST_CITY,C.CUST_STATE,C.CUST_ZIP, 
+I.INV_DATE,I.INV_TOTAL AS "Largest Invoice"
+FROM LGCUSTOMER C INNER JOIN LGINVOICE I ON C.CUST_CODE = I.CUST_CODE 
+WHERE C.CUST_STATE = 'AL' 
+AND I.INV_TOTAL = (SELECT MAX(I.INV_TOTAL) FROM LGINVOICE I2 WHERE I2.CUST_CODE = C.CUST_CODE)
+UNION SELECT C.CUST_CODE, C.CUST_FNAME, C.CUST_LNAME, C.CUST_STREET,
+C.CUST_CITY, C.CUST_STATE, C.CUST_ZIP, NULL, 0
+FROM LGCUSTOMER C WHERE C.CUST_STATE = 'AL' AND C.CUST_CODE NOT IN 
+(SELECT C.CUST_CODE FROM LGINVOICE I)
+GROUP BY C.CUST_CODE
+ORDER BY CUST_LNAME, CUST_FNAME;
+
+
+/* Question 12. The purchasing manager is still concerned about the impact of price on sales. Write a query to display 
+the brand name, brand type, product SKU, product description, and price of any products that are not a premium brand, 
+but that cost more than the most expensive premium brand products. */
+
+SELECT B.BRAND_NAME, B.BRAND_TYPE, P.PROD_SKU, P.PROD_DESCRIPT, P.PROD_PRICE
+FROM LGBRAND B INNER JOIN LGPRODUCT P ON B.Brand_ID = P.Brand_ID 
+WHERE BRAND_TYPE != 'PREMIUM' AND Prod_Price > 
+	(SELECT MAX(PROD_PRICE) 
+	FROM LGBRAND B INNER JOIN LGPRODUCT P ON B.BRAND_ID = P.BRAND_ID 
+	WHERE B.BRAND_TYPE = 'PREMIUM');
