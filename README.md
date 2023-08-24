@@ -15,3 +15,4 @@ Hello😄! Thank you for stopping by. This portfolio contains SQL Projects from 
 # Advanced SQL Code #
 - In my Masters Program, I was able to learn deeper into the language and perform more complicated tasks (see below).
   - [SQL Project 1](https://github.com/kaodi1999/SQL-Portfolio-KO/blob/3c6d756ec10190d001164767a066fb8084447bd1/SQL%20Project%201)
+  - [SQL Final Project]
