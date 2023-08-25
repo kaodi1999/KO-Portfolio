@@ -13,6 +13,6 @@ Hello😄! Thank you for stopping by. This portfolio contains SQL Projects from 
   - In [this](https://github.com/kaodi1999/SQL-Portfolio-KO/blob/6986f8c20ead8644e0afd61976cb9145ae75d6e0/NFL%20Analysis) project, I used an NFL Fantasy Football dataset I found on Kaggle to find different answers to random questions. This was used as a practice study, so it may seem a bit basic; however, there is more to come!
 
 # Advanced SQL Code #
-- In my Masters Program, I was able to learn deeper into the language and perform more complicated tasks (see below).
+- In my Masters Program, I was able to learn deeper into the SQL language and perform more complicated projects (see below).
   - [SQL Project 1](https://github.com/kaodi1999/SQL-Portfolio-KO/blob/3c6d756ec10190d001164767a066fb8084447bd1/SQL%20Project%201)
   - [SQL Final Project](https://github.com/kaodi1999/SQL-Portfolio-KO/blob/881e0155152ed2840a769ef509e4fe627e49a2ef/SQL%20Final%20Project)
